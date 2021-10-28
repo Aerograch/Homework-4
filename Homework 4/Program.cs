@@ -226,7 +226,7 @@ namespace Homework_4
                 Console.WriteLine("Введите одномерный массив.");
                 string[] input = Console.ReadLine().Split(' ');
             }
-            else if (dim[0] == 2)
+            else 
             {
                 Console.WriteLine("Для удобства массив уже не будет вводится с рук");
                 string[,] input = new string[,] { { "1", "2", "3" }, { "16", "15", "14" } };
@@ -236,8 +236,7 @@ namespace Homework_4
                 Console.WriteLine("Введите одномерный массив.");
                 string[] input2 = Console.ReadLine().Split(' ');
             }
-            else if (dim[1] == 2)
-            {
+            else {
                 Console.WriteLine("Для удобства массив уже не будет вводится с рук");
                 string[,] input2 = new string[,] { { "1", "2", "3" }, { "16", "15", "14" } };
             }
@@ -252,42 +251,146 @@ namespace Homework_4
             Console.Write("Введите разрядности массивов через пробел. > ");
             string[] stringDim = Console.ReadLine().Split(' ');
             int[] dim = OneDimensionalArrayToInt(stringDim);
-            if (dim[0] == 1)
+            int[] cout = new int[2];
+            if (dim[0] == 1 && dim[1] == 1)
             {
                 Console.WriteLine("Введите одномерный массив.");
                 string[] input1 = Console.ReadLine().Split(' ');
-            }
-            else
-            {
-                Console.WriteLine("Для удобства массив уже не будет вводится с рук");
-                string[,] input1 = new string[,] { { "1", "2", "3" }, { "16", "15", "14" } };
-            }
-            if (dim[1] == 1)
-            {
                 Console.WriteLine("Введите одномерный массив.");
                 string[] input2 = Console.ReadLine().Split(' ');
-            }
-            else
-            {
-                Console.WriteLine("Для удобства массив уже не будет вводится с рук");
-                string[,] input2 = new string[,] { { "1", "2", "3" }, { "16", "15", "14" } };
-            }
-            int[] cout = new int[2];
-            if (dim[0] == 1 || dim[1] == 1)
-            {
                 cout[0] = 1;
-            }
-            else if (dim[0] == 1 && dim[1] == 1)
-            {
-                if (input1.GetLength(1) < input2.GetLength(1))
+                if (input1.Length < input2.Length)
                 {
-                    cout[0] = input1.GetLength(1);
+                    cout[1] = input1.Length;
                 }
                 else
                 {
-                    cout[0] = input2.GetLength(1);
+                    cout[1] = input2.Length;
                 }
             }
+            else if(dim[0] == 1 && dim[1] == 2)
+            {
+                Console.WriteLine("Введите одномерный массив.");
+                string[] input1 = Console.ReadLine().Split(' ');
+                Console.WriteLine("Для удобства массив уже не будет вводится с рук");
+                string[,] input2 = new string[,] { { "1", "2", "3" }, { "16", "15", "14" } };
+                cout[0] = 1;
+                if (input1.Length < input2.GetLength(1))
+                {
+                    cout[1] = input1.Length;
+                }
+                else
+                {
+                    cout[1] = input2.GetLength(1);
+                }
+            }
+            else if (dim[0] == 2 && dim[1] == 1)
+            {
+                Console.WriteLine("Для удобства массив уже не будет вводится с рук");
+                string[,] input1 = new string[,] { { "1", "2", "3" }, { "16", "15", "14" } };
+                Console.WriteLine("Введите одномерный массив.");
+                string[] input2 = Console.ReadLine().Split(' ');
+                cout[0] = 1;
+                if (input1.GetLength(1) < input2.Length)
+                {
+                    cout[1] = input1.GetLength(1);
+                }
+                else
+                {
+                    cout[1] = input2.Length;
+                }
+            }
+            else if (dim[0] == 2 && dim[1] == 2)
+            {
+                Console.WriteLine("Для удобства массив уже не будет вводится с рук");
+                string[,] input1 = new string[,] { { "1", "2", "3" }, { "16", "15", "14" } };
+                Console.WriteLine("Для удобства массив уже не будет вводится с рук");
+                string[,] input2 = new string[,] { { "1", "2", "3" }, { "16", "15", "14" } };
+                if (input1.GetLength(0) < input2.GetLength(0))
+                {
+                    cout[0] = input1.GetLength(0);
+                }
+                else
+                {
+                    cout[0] = input2.GetLength(0);
+                }
+                if (input1.GetLength(1) < input2.GetLength(1))
+                {
+                    cout[1] = input1.GetLength(1);
+                }
+                else
+                {
+                    cout[1] = input2.GetLength(1);
+                }
+            }
+            Console.WriteLine($"({cout[0]}, {cout[1]})");
+        }
+        /*Конец функций для четвертой задачи
+         *-----------------------------------------------------------------------
+         *Начало функций для пятой задачи
+         */
+        static void FifthTaskInit()
+        {
+            Console.WriteLine("Введите 2 массива на 2-ух строчках");
+            string[] input1 = Console.ReadLine().Split(' ');
+            string[] input2 = Console.ReadLine().Split(' ');
+            int[] intArray1 = OneDimensionalArrayToInt(input1);
+            int[] intArray2 = OneDimensionalArrayToInt(input2);
+            int counter = 0;
+            int[] finalArray = new int[intArray1.Length];
+            foreach (int i in intArray1)
+            {
+                finalArray[counter] = i + intArray2[counter];
+                counter++;
+            }
+            foreach (int i in finalArray)
+            {
+                Console.Write($"{i} ");
+            }
+        }
+        /*Конец функций для пятой задачи
+         *-----------------------------------------------------------------------
+         *Начало функций для шестой задачи
+         */
+        static void SixthTaskInit()
+        {
+            Console.WriteLine("Введите 2 массива на 2-ух строчках");
+            string[] input1 = Console.ReadLine().Split(' ');
+            string[] input2 = Console.ReadLine().Split(' ');
+            int counter = 0;
+            int secondcounter = 0;
+            foreach (string s in input1)
+            {
+                if (s == input2[counter])
+                {
+                    secondcounter++;
+                }
+                counter++;
+            }
+            Console.WriteLine(Convert.ToDouble(secondcounter) / Convert.ToDouble(counter));
+        }
+        /*Конец функций для шестой задачи
+         *-----------------------------------------------------------------------
+         *Начало функций для седьмой задачи
+         */
+        static void SeventhTaskInit()
+        {
+            Console.WriteLine("Введите 2 массива на 2-ух строчках");
+            string[] input1 = Console.ReadLine().Split(' ');
+            string[] input2 = Console.ReadLine().Split(' ');
+            int[] intArray1 = OneDimensionalArrayToInt(input1);
+            int[] intArray2 = OneDimensionalArrayToInt(input2);
+            int sum1 = 0;
+            int sum2 = 0;
+            foreach (int i in intArray1)
+            {
+                sum1 += i;
+            }
+            foreach (int i in intArray2)
+            {
+                sum2 += i;
+            }
+            Console.WriteLine($"Среднее значение первого массива = {Convert.ToDouble(sum1) / Convert.ToDouble(intArray1.Length)}\nСреднее значение второго массива = {Convert.ToDouble(sum2) / Convert.ToDouble(intArray2.Length)}");
         }
         static void Main(string[] args)
         {
@@ -303,8 +406,18 @@ namespace Homework_4
 
                 case 3:
                     ThirdTaskInit(); break;
+
                 case 4:
                     FourthTaskInit(); break;
+
+                case 5:
+                    FifthTaskInit(); break;
+
+                case 6:
+                    SixthTaskInit(); break;
+
+                case 7:
+                    SeventhTaskInit(); break;
             }
         }
     }
